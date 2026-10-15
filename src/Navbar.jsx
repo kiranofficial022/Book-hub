@@ -39,10 +39,15 @@ function Navbar() {
         </NavLink>
 
         <NavLink to="/cart" onClick={closeMenu}>
-          Cart
+          🛒 Cart
+        </NavLink>
+
+        <NavLink to="/my-orders" onClick={closeMenu}>
+          My Orders
         </NavLink>
 
         <button
+          type="button"
           className="nav-button"
           onClick={() => {
             closeMenu()
@@ -53,6 +58,7 @@ function Navbar() {
         </button>
 
         <button
+          type="button"
           className="logout-button"
           onClick={handleLogout}
         >

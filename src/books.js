@@ -130,32 +130,109 @@ const bookData = [
   ['The Blue Zones', 'Dan Buettner', 'Health', 399, '9781426209482'],
   ['The 5 AM Club', 'Robin Sharma', 'Lifestyle', 349, '9781443456623'],
   ['The Four Agreements', 'Don Miguel Ruiz', 'Lifestyle', 249, '9781878424310'],
-]
+
+  // Additional fiction
+  ['The Midnight Library', 'Matt Haig', 'Fiction', 399, '9780525559474'],
+  ['The Book Thief', 'Markus Zusak', 'Fiction', 399, '9780375842207'],
+  ['The Fault in Our Stars', 'John Green', 'Fiction', 349, '9780142424179'],
+  ['The House in the Cerulean Sea', 'TJ Klune', 'Fiction', 449, '9781250217288'],
+  ['Where the Crawdads Sing', 'Delia Owens', 'Mystery', 399, '9780735219090'],
+
+  // Technology and programming
+  ['Clean Architecture', 'Robert C. Martin', 'Technology', 699, '9780134494166'],
+  ['Design Patterns', 'Erich Gamma, Richard Helm, Ralph Johnson and John Vlissides', 'Technology', 899, '9780201633610'],
+  ['The Clean Coder', 'Robert C. Martin', 'Technology', 599, '9780137081073'],
+  ['Refactoring', 'Martin Fowler', 'Technology', 899, '9780134757599'],
+  ['You Don’t Know JS Yet', 'Kyle Simpson', 'Technology', 499, '9781098118730'],
+
+  // Business and leadership
+  ['The 48 Laws of Power', 'Robert Greene', 'Business', 599, '9780140280197'],
+  ['The Hard Thing About Hard Things', 'Ben Horowitz', 'Business', 499, '9780062273208'],
+  ['Measure What Matters', 'John Doerr', 'Business', 499, '9780525536222'],
+  ['Rework', 'Jason Fried and David Heinemeier Hansson', 'Business', 399, '9780307463746'],
+  ['The E-Myth Revisited', 'Michael E. Gerber', 'Business', 449, '9780887307287'],
+
+  // Indian literature
+  ['The Palace of Illusions', 'Chitra Banerjee Divakaruni', 'Indian Literature', 399, '9781400096206'],
+  ['The Immortals of Meluha', 'Amish Tripathi', 'Indian Literature', 349, '9789380658742'],
+  ['The Secret of the Nagas', 'Amish Tripathi', 'Indian Literature', 349, '9789380658797'],
+  ['The Inheritance of Loss', 'Kiran Desai', 'Indian Literature', 399, '9780802142818'],
+  ['A Fine Balance', 'Rohinton Mistry', 'Indian Literature', 499, '9781400030651'],
+
+  // Science
+  ['The Grand Design', 'Stephen Hawking and Leonard Mlodinow', 'Science', 399, '9780553384666'],
+  ['The Hidden Life of Trees', 'Peter Wohlleben', 'Science', 449, '9781771642484'],
+  ['The Demon-Haunted World', 'Carl Sagan', 'Science', 499, '9780345409461'],
+  ['The Elegant Universe', 'Brian Greene', 'Science', 449, '9780393338102'],
+  ['The Order of Time', 'Carlo Rovelli', 'Science', 399, '9780735216105'],
+
+  // Fantasy
+  ['The Way of Kings', 'Brandon Sanderson', 'Fantasy', 699, '9780765326355'],
+  ['The Final Empire', 'Brandon Sanderson', 'Fantasy', 499, '9780765350381'],
+  ['The Name of the Rose', 'Umberto Eco', 'Mystery', 499, '9780156001311'],
+  ['Eragon', 'Christopher Paolini', 'Fantasy', 399, '9780375826696'],
+  ['The Golden Compass', 'Philip Pullman', 'Fantasy', 399, '9780440418320'],
+
+  // Self improvement
+  ['Grit', 'Angela Duckworth', 'Self Improvement', 449, '9781501111105'],
+  ['The Compound Effect', 'Darren Hardy', 'Self Improvement', 349, '9781593157241'],
+  ['The Gifts of Imperfection', 'Brené Brown', 'Self Improvement', 399, '9781592858491'],
+  ['The 5 Second Rule', 'Mel Robbins', 'Self Improvement', 399, '9781682612385'],
+
+  // Mystery and suspense
+  ['The Big Sleep', 'Raymond Chandler', 'Mystery', 299, '9780394758282'],
+  ['The Hound of the Baskervilles', 'Arthur Conan Doyle', 'Mystery', 249, '9780140437867'],
+  ['The Murder of Roger Ackroyd', 'Agatha Christie', 'Mystery', 299, '9780062073563'],
+  ['The Cuckoo’s Calling', 'Robert Galbraith', 'Mystery', 449, '9780316206846'],
+  ['In the Woods', 'Tana French', 'Mystery', 399, '9780143113492'],
+];
 
 const descriptions = {
-  'Self Improvement': 'Build better habits, strengthen your mindset, and discover practical ideas for personal growth.',
-  Finance: 'Understand money, make thoughtful financial decisions, and explore principles for building long-term wealth.',
-  Business: 'Explore leadership, entrepreneurship, strategy, and the ideas behind successful businesses.',
-  Productivity: 'Discover practical ways to manage your time, improve concentration, and accomplish meaningful goals.',
-  Technology: 'Explore computing, software development, innovation, and the technologies shaping our world.',
-  Psychology: 'Discover how people think, feel, make decisions, and understand themselves and others.',
-  Philosophy: 'Explore fundamental questions about life, knowledge, ethics, meaning, and human existence.',
-  History: 'Travel through important events, ideas, and people that have shaped societies and civilizations.',
-  Fiction: 'Enter an engaging story filled with memorable characters, unexpected turns, and new perspectives.',
-  Classic: 'Experience a celebrated literary work that has influenced readers and writers across generations.',
-  Lifestyle: 'Find ideas for a more thoughtful, balanced, and meaningful everyday life.',
-  Fantasy: 'Step into imaginative worlds filled with extraordinary characters, magical adventures, and epic journeys.',
-  Adventure: 'Embark on exciting journeys, discover unfamiliar places, and experience the spirit of exploration.',
-  Mystery: 'Follow intriguing clues, uncover hidden secrets, and piece together an engaging puzzle.',
-  Thriller: 'Experience suspenseful storytelling, unexpected twists, and gripping moments of uncertainty.',
-  Science: 'Explore scientific discoveries and ideas that help explain the universe, nature, and human life.',
-  Environment: 'Discover the natural world and the environmental challenges that affect our planet.',
-  Memoir: 'Explore personal experiences, life lessons, and reflections from an individual’s journey.',
-  Biography: 'Learn about a remarkable life, its challenges, achievements, and lasting influence.',
-  'Indian Literature': 'Discover stories, ideas, and perspectives rooted in the rich diversity of Indian literature and society.',
-  'World Literature': 'Explore literature from around the world and encounter different cultures and perspectives.',
-  Health: 'Learn about health, wellbeing, and evidence-informed ideas for understanding the human body.',
-}
+  'Self Improvement':
+    'Build better habits, strengthen your mindset, and discover practical ideas for personal growth.',
+  Finance:
+    'Understand money, make thoughtful financial decisions, and explore principles for building long-term wealth.',
+  Business:
+    'Explore leadership, entrepreneurship, strategy, and the ideas behind successful businesses.',
+  Productivity:
+    'Discover practical ways to manage your time, improve concentration, and accomplish meaningful goals.',
+  Technology:
+    'Explore computing, software development, innovation, and the technologies shaping our world.',
+  Psychology:
+    'Discover how people think, feel, make decisions, and understand themselves and others.',
+  Philosophy:
+    'Explore fundamental questions about life, knowledge, ethics, meaning, and human existence.',
+  History:
+    'Travel through important events, ideas, and people that have shaped societies and civilizations.',
+  Fiction:
+    'Enter an engaging story filled with memorable characters, unexpected turns, and new perspectives.',
+  Classic:
+    'Experience a celebrated literary work that has influenced readers and writers across generations.',
+  Lifestyle:
+    'Find ideas for a more thoughtful, balanced, and meaningful everyday life.',
+  Fantasy:
+    'Step into imaginative worlds filled with extraordinary characters, magical adventures, and epic journeys.',
+  Adventure:
+    'Embark on exciting journeys, discover unfamiliar places, and experience the spirit of exploration.',
+  Mystery:
+    'Follow intriguing clues, uncover hidden secrets, and piece together an engaging puzzle.',
+  Thriller:
+    'Experience suspenseful storytelling, unexpected twists, and gripping moments of uncertainty.',
+  Science:
+    'Explore scientific discoveries and ideas that help explain the universe, nature, and human life.',
+  Environment:
+    'Discover the natural world and the environmental challenges that affect our planet.',
+  Memoir:
+    'Explore personal experiences, life lessons, and reflections from an individual’s journey.',
+  Biography:
+    'Learn about a remarkable life, its challenges, achievements, and lasting influence.',
+  'Indian Literature':
+    'Discover stories, ideas, and perspectives rooted in the rich diversity of Indian literature and society.',
+  'World Literature':
+    'Explore literature from around the world and encounter different cultures and perspectives.',
+  Health:
+    'Learn about health, wellbeing, and evidence-informed ideas for understanding the human body.',
+};
 
 export const books = bookData.map(
   ([title, author, category, price, isbn], index) => ({
@@ -164,8 +241,9 @@ export const books = bookData.map(
     author,
     category,
     price: `₹${price}`,
-    image: `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`,
-    description: descriptions[category] ||
+    image: `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg?default=false`,
+    description:
+      descriptions[category] ||
       'Explore this book and discover new ideas, perspectives, and insights.',
   })
-)
+);

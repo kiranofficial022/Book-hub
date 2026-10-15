@@ -1,12 +1,20 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import './CartPage.css'
+
+function getPrice(price) {
+  return Number(String(price ?? 0).replace(/[^\d.]/g, '')) || 0
+}
 
 function CartPage() {
   const navigate = useNavigate()
 
   const [cartItems, setCartItems] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem('bookHubCart')) || []
+      const saved = JSON.parse(
+        localStorage.getItem('bookHubCart') || '[]'
+      )
+      return Array.isArray(saved) ? saved : []
     } catch {
       return []
     }
@@ -17,8 +25,7 @@ function CartPage() {
   }, [cartItems])
 
   const totalPrice = cartItems.reduce(
-    (total, book) =>
-      total + Number(String(book.price).replace(/[^\d.]/g, '')),
+    (total, book) => total + getPrice(book.price),
     0
   )
 
@@ -28,89 +35,152 @@ function CartPage() {
     )
   }
 
+  const clearCart = () => {
+    setCartItems([])
+  }
+
+  const formatPrice = (price) =>
+    `₹${price.toLocaleString('en-IN')}`
+
   return (
     <main className="cart-page">
       <button
-        className="back-button"
+        type="button"
+        className="cart-back-button"
         onClick={() => navigate('/books')}
       >
-        ← Continue shopping
+        <span aria-hidden="true">←</span> Continue shopping
       </button>
 
-      <p className="eyebrow">YOUR COLLECTION</p>
-      <h1>Shopping Cart</h1>
-      <p className="cart-subtitle">
-        Your next great read is just a step away.
-      </p>
+      <header className="cart-heading">
+        <span className="cart-eyebrow">YOUR COLLECTION</span>
+        <h1>Shopping Cart</h1>
+        <p>
+          Your next great read is just a step away.
+        </p>
+      </header>
 
       {cartItems.length === 0 ? (
-        <div className="empty-cart">
-          <span>🛒</span>
-          <h2>Your cart is empty</h2>
-          <p>Discover a book that inspires you.</p>
+        <section className="cart-empty-state">
+          <div className="cart-empty-icon" aria-hidden="true">
+            📚
+          </div>
+          <span className="cart-eyebrow">A WORLD OF STORIES AWAITS</span>
+          <h2>Your cart is waiting for a story</h2>
+          <p>
+            Explore our collection and find a book worth keeping.
+          </p>
 
           <button
-            className="primary-button"
+            type="button"
+            className="cart-primary-button"
             onClick={() => navigate('/books')}
           >
-            Explore Books →
+            Discover Books <span aria-hidden="true">→</span>
           </button>
-        </div>
+        </section>
       ) : (
-        <div className="cart-layout">
-          <div className="cart-list">
-            {cartItems.map((book) => (
-              <article className="cart-item" key={book.id}>
-                <img src={book.image} alt={book.title} />
+        <>
+          <div className="cart-items-heading">
+            <h2>Your selection</h2>
+            <span>
+              {cartItems.length} {cartItems.length === 1 ? 'book' : 'books'}
+            </span>
 
-                <div className="cart-item-info">
-                  <h3>{book.title}</h3>
-                  <p>By {book.author}</p>
-                  <strong>{book.price}</strong>
-
-                  <button
-                    className="remove-cart-button"
-                    onClick={() => removeBook(book.id)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              </article>
-            ))}
+            <button
+              type="button"
+              className="cart-clear-button"
+              onClick={clearCart}
+            >
+              Clear cart
+            </button>
           </div>
 
-          <aside className="cart-summary">
-            <h2>Order Summary</h2>
+          <div className="cart-layout">
+            <section className="cart-list" aria-label="Cart items">
+              {cartItems.map((book, index) => (
+                <article
+                  className="cart-item"
+                  key={`${book.id}-${index}`}
+                >
+                  <div className="cart-book-cover">
+                    <img
+                      src={book.image}
+                      alt={book.title}
+                      onError={(event) => {
+                        event.currentTarget.style.visibility = 'hidden'
+                      }}
+                    />
+                  </div>
 
-            <div className="cart-summary-row">
-              <span>Books ({cartItems.length})</span>
-              <strong>
-                ₹{totalPrice.toLocaleString('en-IN')}
-              </strong>
-            </div>
+                  <div className="cart-item-info">
+                    <span className="cart-book-label">BOOK HUB EDITION</span>
+                    <h3>{book.title}</h3>
+                    <p>By {book.author || 'Unknown author'}</p>
 
-            <div className="cart-summary-row">
-              <span>Delivery</span>
-              <strong>Free</strong>
-            </div>
+                    <strong className="cart-book-price">
+                      {formatPrice(getPrice(book.price))}
+                    </strong>
 
-            <div className="cart-total">
-              <span>Total</span>
-              <strong>
-                ₹{totalPrice.toLocaleString('en-IN')}
-              </strong>
-            </div>
-           <button
-  className="cart-checkout-button"
-  onClick={() => navigate('/checkout')}
->
-  Proceed to Checkout →
-</button>
-            
-            
-          </aside>
-        </div>
+                    <button
+                      type="button"
+                      className="cart-remove-button"
+                      onClick={() => removeBook(book.id)}
+                      aria-label={`Remove ${book.title} from cart`}
+                    >
+                      <span aria-hidden="true">×</span> Remove
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </section>
+
+            <aside className="cart-summary">
+              <span className="cart-eyebrow">YOUR ORDER</span>
+              <h2>Order Summary</h2>
+
+              <div className="cart-summary-row">
+                <span>
+                  Books ({cartItems.length})
+                </span>
+                <strong>{formatPrice(totalPrice)}</strong>
+              </div>
+
+              <div className="cart-summary-row">
+                <span>Delivery</span>
+                <strong className="cart-free-delivery">FREE</strong>
+              </div>
+
+              <div className="cart-summary-total">
+                <div>
+                  <span>Total amount</span>
+                  <small>Inclusive of listed prices</small>
+                </div>
+                <strong>{formatPrice(totalPrice)}</strong>
+              </div>
+
+              <button
+                type="button"
+                className="cart-checkout-button"
+                onClick={() => navigate('/checkout')}
+              >
+                Proceed to Checkout <span aria-hidden="true">→</span>
+              </button>
+
+              <div className="cart-trust-note">
+                <span aria-hidden="true">✦</span>
+                <p>
+                  Great stories, carefully selected for you.
+                </p>
+              </div>
+            </aside>
+          </div>
+        </>
       )}
+
+      <footer className="cart-footer">
+        Made for readers, one page at a time. ✦
+      </footer>
     </main>
   )
 }

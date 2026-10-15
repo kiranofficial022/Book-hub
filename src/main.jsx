@@ -1,4 +1,3 @@
-
 import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
@@ -18,6 +17,8 @@ import CheckoutPage from './CheckoutPage.jsx'
 import ProtectedRoute from './ProtectedRoute.jsx'
 import NotFound from './NotFound.jsx'
 import Login from './Login.jsx'
+import MyOrders from './MyOrders.jsx'
+import TrackOrder from './TrackOrder.jsx'
 
 function AppRoutes() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -88,6 +89,24 @@ function AppRoutes() {
         element={
           <ProtectedRoute isLoggedIn={isLoggedIn}>
             <CheckoutPage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/my-orders"
+        element={
+          <ProtectedRoute isLoggedIn={isLoggedIn}>
+            <MyOrders />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/track-order/:id"
+        element={
+          <ProtectedRoute isLoggedIn={isLoggedIn}>
+            <TrackOrder />
           </ProtectedRoute>
         }
       />

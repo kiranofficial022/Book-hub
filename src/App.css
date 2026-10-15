@@ -1838,6 +1838,514 @@ footer p {
   line-height: 1.7;
 }
 
+/* ========================================
+   BOOK HUB — PREMIUM UI POLISH
+   Warm ivory • Forest green • Terracotta
+======================================== */
+
+:root {
+  --bh-ivory: #f8f5ee;
+  --bh-cream: #efe8da;
+  --bh-white: #fffdf9;
+  --bh-green: #263d32;
+  --bh-green-light: #365746;
+  --bh-terracotta: #b66e46;
+  --bh-gold: #c7a66a;
+  --bh-text: #292b27;
+  --bh-muted: #77776d;
+  --bh-border: #e8e0d2;
+  --bh-shadow: 0 12px 35px rgba(38, 61, 50, 0.08);
+  --bh-shadow-hover: 0 20px 42px rgba(38, 61, 50, 0.15);
+}
+
+/* Consistent sizing */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bh-ivory);
+  color: var(--bh-text);
+  font-family: "DM Sans", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Section spacing */
+
+.books-section {
+  padding: 76px 6%;
+  background: var(--bh-ivory);
+}
+
+.section-heading {
+  max-width: 760px;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+.section-heading h2 {
+  margin-bottom: 12px;
+  color: var(--bh-green);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+}
+
+.section-heading p {
+  color: var(--bh-muted);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* Search and filter controls */
+
+.books-section input,
+.books-section select {
+  min-height: 48px;
+  padding: 12px 16px;
+  border: 1px solid var(--bh-border);
+  border-radius: 12px;
+  outline: none;
+  background: var(--bh-white);
+  color: var(--bh-text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.books-section input:focus,
+.books-section select:focus {
+  border-color: var(--bh-green-light);
+  box-shadow: 0 0 0 4px rgba(54, 87, 70, 0.1);
+}
+
+.books-section input::placeholder {
+  color: #99968c;
+}
+
+/* Responsive book grid */
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
+
+/* Premium book cards */
+
+.book-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(232, 224, 210, 0.9);
+  border-radius: 18px;
+  background: var(--bh-white);
+  box-shadow: 0 4px 16px rgba(38, 61, 50, 0.035);
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-7px);
+  border-color: #d8c7ae;
+  box-shadow: var(--bh-shadow-hover);
+}
+
+/* Book cover presentation */
+
+.book-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  padding: 24px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #f1eadc, #e6dece);
+}
+
+.book-image img {
+  display: block;
+  width: 100%;
+  max-width: 175px;
+  height: 230px;
+  object-fit: contain;
+  border-radius: 5px;
+  filter: drop-shadow(0 10px 10px rgba(37, 35, 27, 0.16));
+  transition: transform 0.35s ease;
+}
+
+.book-card:hover .book-image img {
+  transform: scale(1.045);
+}
+
+/* Book details */
+
+.book-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 9px;
+  padding: 21px;
+}
+
+.book-info h3 {
+  margin: 0;
+  color: var(--bh-green);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.book-info p {
+  margin: 0;
+  color: var(--bh-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.book-info .price,
+.book-info .book-price {
+  color: var(--bh-terracotta);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Premium buttons */
+
+.book-card button,
+.books-section button {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.book-card button {
+  cursor: pointer;
+}
+
+.book-card button:focus-visible,
+.books-section button:focus-visible {
+  outline: 3px solid var(--bh-gold);
+  outline-offset: 3px;
+}
+
+.book-card button:hover {
+  transform: translateY(-1px);
+}
+
+/* Shared selection color */
+
+::selection {
+  background: #d9e2d7;
+  color: var(--bh-green);
+}
+
+/* Smooth page appearance */
+
+@media (prefers-reduced-motion: no-preference) {
+  .book-card {
+    animation: bh-card-enter 0.45s ease both;
+  }
+
+  @keyframes bh-card-enter {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 1000px) {
+  .book-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .books-section {
+    padding: 60px 4%;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .book-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .books-section {
+    padding: 44px 16px;
+  }
+
+  .book-image {
+    min-height: 190px;
+    padding: 14px;
+  }
+
+  .book-image img {
+    height: 175px;
+  }
+
+  .book-info {
+    gap: 7px;
+    padding: 14px;
+  }
+
+  .book-info h3 {
+    font-size: 1rem;
+  }
+
+  .book-info p {
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .book-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .book-image {
+    min-height: 230px;
+  }
+
+  .book-image img {
+    height: 205px;
+  }
+}
+
+/* ===================================
+   BOOK HUB — PREMIUM NAVBAR & HERO
+=================================== */
+
+:root {
+  --bh-ivory: #f8f5ee;
+  --bh-white: #fffdf9;
+  --bh-green: #263d32;
+  --bh-green-hover: #365746;
+  --bh-terracotta: #b66e46;
+  --bh-muted: #77776d;
+  --bh-border: #e8e0d2;
+}
+
+/* Main navigation */
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+nav a {
+  position: relative;
+  color: var(--bh-green);
+  text-decoration: none;
+  font-size: 0.94rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+nav a::after {
+  position: absolute;
+  right: 0;
+  bottom: -6px;
+  left: 0;
+  height: 2px;
+  background: var(--bh-terracotta);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+nav a:hover {
+  color: var(--bh-terracotta);
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Navigation and general action buttons */
+
+.nav-button,
+.logout-button {
+  min-height: 42px;
+  padding: 11px 19px;
+  border: 1px solid var(--bh-green);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--bh-green);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.nav-button:hover {
+  background: var(--bh-green);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(38, 61, 50, 0.13);
+}
+
+.logout-button {
+  border-color: #e7cfc1;
+  color: #9b5338;
+}
+
+.logout-button:hover {
+  background: #9b5338;
+  color: white;
+}
+
+/* Homepage hero */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(64px, 9vw, 120px) 7%;
+  background:
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(199, 166, 106, 0.18),
+      transparent 32%
+    ),
+    linear-gradient(135deg, #f8f5ee 0%, #eee5d5 100%);
+}
+
+.hero h1 {
+  max-width: 850px;
+  margin: 0 auto 22px;
+  color: var(--bh-green);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  font-weight: 600;
+  letter-spacing: -1.8px;
+  line-height: 1.08;
+}
+
+.hero p {
+  max-width: 620px;
+  margin: 0 auto 30px;
+  color: var(--bh-muted);
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  line-height: 1.85;
+}
+
+/* Primary call-to-action buttons */
+
+.hero button,
+.hero .cta-button {
+  min-height: 48px;
+  padding: 13px 25px;
+  border: 1px solid var(--bh-green);
+  border-radius: 999px;
+  background: var(--bh-green);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hero button:hover,
+.hero .cta-button:hover {
+  background: var(--bh-green-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(38, 61, 50, 0.17);
+}
+
+/* About section */
+
+#about {
+  padding: 72px 6%;
+  background: var(--bh-white);
+}
+
+#about h2 {
+  color: var(--bh-green);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+#about p {
+  color: var(--bh-muted);
+  line-height: 1.9;
+}
+
+/* Responsive navigation */
+
+@media (max-width: 700px) {
+  nav {
+    gap: 14px 20px;
+  }
+
+  nav a {
+    font-size: 0.88rem;
+  }
+
+  .nav-button,
+  .logout-button {
+    padding: 9px 14px;
+    font-size: 0.88rem;
+  }
+
+  .hero {
+    padding: 64px 22px;
+  }
+
+  .hero h1 {
+    letter-spacing: -0.8px;
+  }
+
+  #about {
+    padding: 48px 22px;
+  }
+}
+
+
+
 
 
 

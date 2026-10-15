@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import { books } from './books.js'
 import Login from './Login'
-
+import MyAccount from './MyAccount';
 
 function App({isLoggedIn, setIsLoggedIn}) {
   // Navigation states
   const [showCart, setShowCart] = useState(false)
   const [showCheckout, setShowCheckout] = useState(false)
+  const [showAccount, setShowAccount] = useState(false)
 
   // Checkout form states
   const [customerName, setCustomerName] = useState('')
@@ -149,8 +150,29 @@ function App({isLoggedIn, setIsLoggedIn}) {
   // ==========================================
   // CHECKOUT PAGE — MUST COME BEFORE CART PAGE
   // ==========================================
-
-  if (showCheckout) {
+  // MY ACCOUNT PAGE
+  
+if (showAccount) {
+  return (
+    <MyAccount
+      onBack={() => setShowAccount(false)}
+      onBrowseBooks={() => setShowAccount(false)}
+      onOpenCart={() => {
+        setShowAccount(false)
+        setShowCart(true)
+      }}
+      onLogout={() => {
+        localStorage.removeItem('bookHubLoggedIn')
+        setIsLoggedIn(false)
+        setShowAccount(false)
+        setShowCart(false)
+        setShowCheckout(false)
+        setSelectedBook(null)
+      }}
+    />
+  )
+}
+if (showCheckout) {
     return (
       <div className="app">
         <header className="navbar">
@@ -700,6 +722,7 @@ function App({isLoggedIn, setIsLoggedIn}) {
           <a href="#home">Home</a>
           <a href="#books">Explore Books</a>
           <a href="#about">About</a>
+          
         </nav>
 
         <div className="nav-actions">
@@ -717,6 +740,14 @@ function App({isLoggedIn, setIsLoggedIn}) {
           <a className="nav-button" href="#books">
             Browse Library ↗
           </a>
+
+<button
+  className="nav-button"
+  onClick={() => setShowAccount(true)}
+>
+  My Account
+</button>
+
 
           <button
             className="logout-button"

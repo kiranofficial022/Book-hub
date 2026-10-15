@@ -7,8 +7,8 @@ function ProtectedRoute({ isLoggedIn, children }) {
     return (
       <Navigate
         to="/login"
-        replace
         state={{ from: location }}
+        replace
       />
     )
   }
